@@ -64,7 +64,7 @@ const Scene = () => {
           z-index: 10; /* Encima del rim */
         }
         .profile-image {
-          filter: drop-shadow(0 0 30px rgba(196, 129, 255, 0.45));
+          filter: drop-shadow(0 0 30px rgba(212, 190, 152, 0.45));
           user-select: none;
           pointer-events: none;
           position: relative;

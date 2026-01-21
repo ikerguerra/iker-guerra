@@ -1,6 +1,11 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import "./styles/WhatIDo.css";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const WhatIDo = () => {
   const containerRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -8,19 +13,21 @@ const WhatIDo = () => {
     containerRef.current[index] = el;
   };
   useEffect(() => {
+    const listeners: { element: HTMLDivElement; handler: () => void }[] = [];
+
     if (ScrollTrigger.isTouch) {
       containerRef.current.forEach((container) => {
         if (container) {
           container.classList.remove("what-noTouch");
-          container.addEventListener("click", () => handleClick(container));
+          const handler = () => handleClick(container);
+          container.addEventListener("click", handler);
+          listeners.push({ element: container, handler });
         }
       });
     }
     return () => {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.removeEventListener("click", () => handleClick(container));
-        }
+      listeners.forEach(({ element, handler }) => {
+        element.removeEventListener("click", handler);
       });
     };
   }, []);
@@ -87,11 +94,11 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>DEVELOP</h3>
-              <h4>Description</h4>
+              <h3>FULL STACK</h3>
+              <h4>Desarrollo & Mantenimiento</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae.
+                Especializado en la creación y mantenimiento de plataformas modernas,
+                garantizando escalabilidad y rendimiento mediante tecnologías de vanguardia.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
@@ -128,22 +135,22 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>DESIGN</h3>
-              <h4>Description</h4>
+              <h3>CLOUD & DB</h3>
+              <h4>Architecture & DevOps</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae
+                Gestión de infraestructuras CI/CD y optimización de bases de datos para asegurar
+                una alta disponibilidad y respuesta en aplicaciones críticas.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Blender</div>
-                <div className="what-tags">Zbrush</div>
-                <div className="what-tags">UI Design</div>
-                <div className="what-tags">Motion</div>
-                <div className="what-tags">Rigging</div>
-                <div className="what-tags">3D Animation</div>
-                <div className="what-tags">Character Design</div>
-                <div className="what-tags">Modelling</div>
+                <div className="what-tags">MySQL</div>
+                <div className="what-tags">Java</div>
+                <div className="what-tags">Spring</div>
+                <div className="what-tags">Git</div>
+                <div className="what-tags">Tailwind</div>
+                <div className="what-tags">CI/CD</div>
+                <div className="what-tags">Agile</div>
+                <div className="what-tags">GitHub</div>
               </div>
               <div className="what-arrow"></div>
             </div>

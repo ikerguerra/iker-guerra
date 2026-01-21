@@ -7,9 +7,9 @@
   font-optical-sizing: auto;
   font-style: normal;
   line-height: 1.5;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   color-scheme: light dark;
-  color: #eae5ec;
+  color: #FAF9F6;
   background-color: var(--backgroundColor);
 
   font-synthesis: none;
@@ -19,8 +19,8 @@
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  --accentColor: #35a7d1;
-  --backgroundColor: #0b080c;
+  --accentColor: #D4BE98;
+  --backgroundColor: #121110;
   --vh: 100vh;
   --vh: 100svh;
 }
@@ -139,6 +139,7 @@ body {
 .section-container {
   width: 1300px;
 }
+
 .title,
 .para {
   font-kerning: none;
@@ -147,17 +148,20 @@ body {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
+
 @media only screen and (max-width: 1600px) {
   .section-container {
     width: 1200px;
     max-width: calc(100% - 160px);
   }
 }
+
 @media only screen and (max-width: 1400px) {
   .section-container {
     width: 900px;
   }
 }
+
 @media only screen and (max-width: 900px) {
   .section-container {
     width: 500px;
