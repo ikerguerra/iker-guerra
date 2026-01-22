@@ -9,7 +9,7 @@
   width: var(--cWidth);
   max-width: 1920px;
   margin: auto;
-  z-index: 9;
+  z-index: 20;
 }
 
 .what-box {
@@ -17,7 +17,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  z-index: 9;
+  z-index: 20;
 }
 
 .what-box h2 {
@@ -362,20 +362,24 @@
 @media only screen and (max-width: 900px) {
   .whatIDO {
     flex-direction: column;
+    justify-content: space-between;
+    padding: 100px 0px;
   }
 
   .what-box h2 {
-    margin: 50px 0;
+    margin: 0;
     font-size: 55px;
     line-height: 53px;
   }
 
   .what-box:first-child {
-    justify-content: left;
+    justify-content: center;
+    margin-bottom: 50px;
   }
 
   .what-box:last-child {
     height: 500px;
+    margin-top: 50px;
   }
 
   .what-box {
@@ -451,5 +455,25 @@
   .what-box h2 {
     font-size: 7rem;
     line-height: 6.8rem;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .what-box:first-child {
+    justify-content: flex-end;
+    padding-right: 16%;
+  }
+
+  .what-box:last-child {
+    justify-content: flex-start;
+    padding-left: 16%;
+  }
+
+  .what-box-in {
+    margin-left: 0px;
+  }
+
+  .what-box h2 {
+    margin-right: 0;
   }
 }
