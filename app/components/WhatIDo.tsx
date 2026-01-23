@@ -35,9 +35,9 @@ const WhatIDo = () => {
     <div className="whatIDO">
       <div className="what-box">
         <h2 className="title">
-          W<span className="hat-h2">HAT</span>
+          LO <span className="hat-h2">QUE</span>
           <div>
-            I<span className="do-h2"> DO</span>
+            <span className="do-h2">HAGO</span>
           </div>
         </h2>
       </div>
@@ -94,24 +94,24 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>FULL STACK</h3>
+              <h3>FRONT END</h3>
               <h4>Desarrollo & Mantenimiento</h4>
               <p>
-                Especializado en la creación y mantenimiento de plataformas modernas,
-                garantizando escalabilidad y rendimiento mediante tecnologías de vanguardia.
+                Desarrollo y mantenimiento de aplicaciones web y móviles, utilizando tecnologías
+                modernas y herramientas de vanguardia para asegurar una alta disponibilidad y
+                respuesta en aplicaciones críticas.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
+                <div className="what-tags">HTML</div>
+                <div className="what-tags">CSS</div>
                 <div className="what-tags">JavaScript</div>
                 <div className="what-tags">TypeScript</div>
-                <div className="what-tags">Three.js</div>
                 <div className="what-tags">React</div>
-                <div className="what-tags">Css</div>
-                <div className="what-tags">Node.js</div>
-                <div className="what-tags">Next.js</div>
-                <div className="what-tags">Express.js</div>
+                <div className="what-tags">NextJS</div>
+                <div className="what-tags">Angular</div>
                 <div className="what-tags">PHP</div>
-                <div className="what-tags">MySql</div>
+                <div className="what-tags">Tailwind</div>
               </div>
               <div className="what-arrow"></div>
             </div>
@@ -135,22 +135,23 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>CLOUD & DB</h3>
-              <h4>Architecture & DevOps</h4>
+              <h3>BACK END</h3>
+              <h4>Desarrollo & Mantenimiento</h4>
               <p>
-                Gestión de infraestructuras CI/CD y optimización de bases de datos para asegurar
-                una alta disponibilidad y respuesta en aplicaciones críticas.
+                Desarrollo y mantenimiento de aplicaciones web y móviles, utilizando tecnologías
+                modernas y herramientas de vanguardia para asegurar una alta disponibilidad y
+                respuesta en aplicaciones críticas.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">MySQL</div>
                 <div className="what-tags">Java</div>
                 <div className="what-tags">Spring</div>
+                <div className="what-tags">MySQL</div>
                 <div className="what-tags">Git</div>
-                <div className="what-tags">Tailwind</div>
                 <div className="what-tags">CI/CD</div>
                 <div className="what-tags">Agile</div>
                 <div className="what-tags">GitHub</div>
+                <div className="what-tags">RESTful API</div>
               </div>
               <div className="what-arrow"></div>
             </div>
