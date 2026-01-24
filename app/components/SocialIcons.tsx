@@ -7,6 +7,7 @@ import {
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
+import { trackEvent } from "../utils/gtag";
 import HoverLinks from "./HoverLinks";
 
 const SocialIcons = () => {
@@ -60,12 +61,12 @@ const SocialIcons = () => {
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
-          <a href="https://github.com/ikerguerra" target="_blank">
+          <a href="https://github.com/ikerguerra" target="_blank" aria-label="Github de Iker Guerra">
             <FaGithub />
           </a>
         </span>
         <span>
-          <a href="www.linkedin.com/in/iker-guerra-mielgo" target="_blank">
+          <a href="https://www.linkedin.com/in/iker-guerra-mielgo" target="_blank" aria-label="LinkedIn de Iker Guerra">
             <FaLinkedinIn />
           </a>
         </span>
@@ -75,6 +76,7 @@ const SocialIcons = () => {
         href="/CVIkerGuerraMielgo.pdf"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackEvent("download_cv", { file_name: "CVIkerGuerraMielgo.pdf" })}
       >
         <HoverLinks text="CURRICULUM" />
         <span>

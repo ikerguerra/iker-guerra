@@ -46,7 +46,18 @@ const Work = () => {
       ScrollTrigger.getById("work")?.kill();
     };
   }, []);
-  const projects = [
+  interface Project {
+    id: number;
+    name: string;
+    category: string;
+    tools: string;
+    image: string;
+    alt: string;
+    video?: string;
+    link: string;
+  }
+
+  const projects: Project[] = [
     {
       id: 1,
       name: "Construcciones MBL",
@@ -54,7 +65,8 @@ const Work = () => {
       tools: "Next.js, React, TypeScript",
       image: "/images/project-construcciones.png",
       alt: "Página web Construcciones MBL",
-      video: "project-construcciones.mp4"
+      link: "https://construccionesmbl.vercel.app"
+      // video: "project-construcciones.mp4"
     },
     {
       id: 2,
@@ -62,7 +74,8 @@ const Work = () => {
       category: "Desarrollo web",
       tools: "Next.js, React, TypeScript",
       image: "/images/web-eterna-diagnostics.png",
-      alt: "Página web Eterna Diagnostics"
+      alt: "Página web Eterna Diagnostics",
+      link: "https://eternadx.com"
     },
     {
       id: 3,
@@ -71,15 +84,16 @@ const Work = () => {
       tools: "Next.js, React, TypeScript",
       image: "/images/web-eleva-hps.png",
       alt: "Página web Eleva HPS",
-      video: "WebElevaHPS.mp4"
+      link: "https://elevahps.com"
     },
     {
       id: 4,
       name: "Mundo zapas",
       category: "Desarrollo web",
-      tools: "HTML, CSS, Javascript, PHP",
+      tools: "HTML, CSS, Javascript, PHP, MySQL",
       image: "/images/mundozapas.png",
-      alt: "Página web Mundo zapas"
+      alt: "Página web Mundo zapas",
+      link: "https://mundozapas.ct.ws"
     }
   ];
 
@@ -97,14 +111,21 @@ const Work = () => {
                   <h3>0{project.id}</h3>
 
                   <div>
-                    <h4>{project.name}</h4>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer">
+                      <h4>{project.name}</h4>
+                    </a>
                     <p>{project.category}</p>
                   </div>
                 </div>
                 <h4>Herramientas</h4>
                 <p>{project.tools}</p>
               </div>
-              <WorkImage image={project.image} alt={project.alt} video={project.video} />
+              <WorkImage
+                image={project.image}
+                alt={project.alt}
+                video={project.video ? project.video : undefined}
+                link={project.link}
+              />
             </div>
           ))}
         </div>

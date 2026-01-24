@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
+import { trackEvent } from "../utils/gtag";
 
 interface Props {
   image: string;
@@ -28,6 +29,7 @@ const WorkImage = (props: Props) => {
         href={props.link}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsVideo(false)}
+        onClick={() => trackEvent("select_item", { item_id: props.alt, item_link: props.link })}
         target="_blank"
         data-cursor={"disable"}
       >

@@ -42,6 +42,8 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 150px;
 }
 
 .career-info-box p {
@@ -90,7 +92,6 @@
   width: 3px;
   height: 100%;
   background-image: linear-gradient(#D4BE98, #607D8B);
-  max-height: 0%;
 }
 
 .career-dot {
