@@ -45,11 +45,10 @@
 }
 
 .navbar-title {
-  font-family: var(--font-storm-gust);
-  /* font-weight: 700; */
-  font-size: 32px;
+  font-family: var(--font-styro);
+  font-weight: 700;
+  font-size: 40px;
   letter-spacing: 0.2px;
-  text-transform: lowercase;
 }
 
 @media only screen and (min-width: 500px) {
@@ -68,7 +67,7 @@
   }
 
   .navbar-title {
-    font-size: 24px;
+    font-size: 32px;
   }
 }
 
@@ -79,9 +78,6 @@
 }
 
 @media only screen and (min-width: 1200px) {
-  .header {
-    padding: 35px 0px;
-  }
 
   .header ul {
     column-gap: 80px;
@@ -93,6 +89,6 @@
   }
 
   .navbar-title {
-    font-size: 32px;
+    font-size: 70px;
   }
 }

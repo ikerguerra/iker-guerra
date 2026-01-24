@@ -21,6 +21,8 @@ const imageUrls = [
   "/images/mysql.webp",
   "/images/typescript.webp",
   "/images/javascript.webp",
+  "/images/angular.png",
+  "/images/java.png",
 ];
 const textures = imageUrls.map((url) => textureLoader.load(url));
 
@@ -168,7 +170,7 @@ const TechStack = () => {
 
   return (
     <div className="techstack">
-      <h2> My Techstack</h2>
+      <h2> Mi Techstack</h2>
 
       <Canvas
         shadows

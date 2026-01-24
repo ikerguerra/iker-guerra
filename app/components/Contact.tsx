@@ -1,28 +1,76 @@
+import React from "react";
 import { MdArrowOutward, MdCopyright } from "react-icons/md";
 import "./styles/Contact.css";
 
 const Contact = () => {
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Logic for form submission would go here (e.g., API call)
+    console.log("Form submitted:", formData);
+    alert("¡Gracias! Me pondré en contacto contigo pronto.");
+    setFormData({ name: "", email: "", message: "" });
+  };
+
   return (
     <div className="contact-section section-container" id="contact">
       <div className="contact-container">
-        <h3>Contact0</h3>
-        <div className="contact-flex">
-          <div className="contact-box">
-            <h4>Email</h4>
-            <p>
-              <a href="mailto:ikerguerra@hotmail.es" data-cursor="disable">
-                ikerguerra@hotmail.es
-              </a>
-            </p>
-            <h4>Phone</h4>
-            <p>
-              <a href="tel:+9199999999" data-cursor="disable">
-                +91 99999 99999
-              </a>
-            </p>
-          </div>
-          <div className="contact-box">
-            <h4>Social</h4>
+        <div className="contact-header">
+          <h3>¿Quieres contactar conmigo?</h3>
+          <h2>Hablemos.</h2>
+        </div>
+
+        <div className="contact-main">
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                type="text"
+                name="name"
+                placeholder="Nombre"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                data-cursor="disable"
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                data-cursor="disable"
+              />
+            </div>
+            <div className="form-group">
+              <textarea
+                name="message"
+                placeholder="Mensaje"
+                rows={4}
+                value={formData.message}
+                onChange={handleChange}
+                required
+                data-cursor="disable"
+              ></textarea>
+            </div>
+            <button type="submit" className="submit-btn" data-cursor="disable">
+              Enviar mensaje <MdArrowOutward />
+            </button>
+          </form>
+
+          <div className="social-links">
             <a
               href="https://github.com"
               target="_blank"
@@ -40,13 +88,16 @@ const Contact = () => {
               Linkedin <MdArrowOutward />
             </a>
           </div>
-          <div className="contact-box">
-            <h2>
-              Desarrollado con NextJS
-            </h2>
-            <h5>
-              <MdCopyright /> 2024
-            </h5>
+        </div>
+
+        <div className="contact-footer">
+          <div className="footer-left">
+            <p>Desarrollado con NextJS & ❤️</p>
+          </div>
+          <div className="footer-right">
+            <p>
+              <MdCopyright /> 2024 Iker Guerra
+            </p>
           </div>
         </div>
       </div>

@@ -50,67 +50,44 @@ const Work = () => {
     {
       id: 1,
       name: "Construcciones MBL",
-      category: "Web Development",
+      category: "Desarrollo web",
       tools: "Next.js, React, TypeScript",
       image: "/images/project-construcciones.png",
-      alt: "Construcciones MBL Project",
+      alt: "Página web Construcciones MBL",
       video: "project-construcciones.mp4"
     },
     {
       id: 2,
       name: "Eterna Diagnostics",
-      category: "Healthcare Platform",
-      tools: "React, Spring Boot, PostgreSQL",
-      image: "/images/project-eterna-1.jpg",
-      alt: "Eterna Diagnostics Platform"
+      category: "Desarrollo web",
+      tools: "Next.js, React, TypeScript",
+      image: "/images/web-eterna-diagnostics.png",
+      alt: "Página web Eterna Diagnostics"
     },
     {
       id: 3,
-      name: "Eterna Dashboard",
-      category: "Analytics",
-      tools: "React, TypeScript, Chart.js",
-      image: "/images/project-eterna-2.jpg",
-      alt: "Eterna Analytics Dashboard"
+      name: "Eleva HPS",
+      category: "Desarrollo web",
+      tools: "Next.js, React, TypeScript",
+      image: "/images/web-eleva-hps.png",
+      alt: "Página web Eleva HPS",
+      video: "WebElevaHPS.mp4"
     },
     {
       id: 4,
-      name: "Project Name",
-      category: "Category",
-      tools: "Javascript, TypeScript, React, Threejs",
-      image: "/images/placeholder.webp",
-      alt: ""
-    },
-    {
-      id: 5,
-      name: "Project Name",
-      category: "Category",
-      tools: "Javascript, TypeScript, React, Threejs",
-      image: "/images/placeholder.webp",
-      alt: ""
-    },
-    {
-      id: 6,
-      name: "Project Name",
-      category: "Category",
-      tools: "Javascript, TypeScript, React, Threejs",
-      image: "/images/placeholder.webp",
-      alt: ""
-    },
-    {
-      id: 7,
-      name: "Project Name",
-      category: "Category",
-      tools: "Javascript, TypeScript, React, Threejs",
-      image: "/images/video.mp4",
-      alt: ""
-    },
+      name: "Mundo zapas",
+      category: "Desarrollo web",
+      tools: "HTML, CSS, Javascript, PHP",
+      image: "/images/mundozapas.png",
+      alt: "Página web Mundo zapas"
+    }
   ];
 
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
         <h2>
-          My <span>Work</span>
+          Mis <span>proyectos</span>
         </h2>
         <div className="work-flex">
           {projects.map((project) => (
@@ -124,7 +101,7 @@ const Work = () => {
                     <p>{project.category}</p>
                   </div>
                 </div>
-                <h4>Tools and features</h4>
+                <h4>Herramientas</h4>
                 <p>{project.tools}</p>
               </div>
               <WorkImage image={project.image} alt={project.alt} video={project.video} />
