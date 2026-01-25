@@ -20,6 +20,11 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const resizeHandler = () => {
       setSplitText();
+      // Reinicializar timelines de GSAP con limpieza
+      import("./utils/GsapScroll").then((module) => {
+        module.setCharTimeline();
+        module.setAllTimeline();
+      });
       setIsDesktopView(window.innerWidth > 1024);
     };
     resizeHandler();
@@ -27,6 +32,10 @@ const MainContainer = ({ children }: PropsWithChildren) => {
 
     return () => {
       window.removeEventListener("resize", resizeHandler);
+      // Limpiar ScrollTriggers al desmontar
+      import("gsap/ScrollTrigger").then((module) => {
+        module.ScrollTrigger.getAll().forEach(st => st.kill());
+      });
     };
   }, []);
 
