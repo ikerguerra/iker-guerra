@@ -47,8 +47,8 @@ const CAREER_DATA: CareerExperience[] = [
 const CareerItem = memo(({ experience, index }: { experience: CareerExperience; index: number }) => (
   <m.div
     className="career-info-box"
-    initial={{ opacity: 0, x: -50 }}
-    whileInView={{ opacity: 1, x: 0 }}
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.6, delay: index * 0.1 }}
   >

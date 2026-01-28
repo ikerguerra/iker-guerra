@@ -42,8 +42,6 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
-  content-visibility: auto;
-  contain-intrinsic-size: 0 150px;
 }
 
 .career-info-box p {
