@@ -97,9 +97,7 @@ const WhatIDo = () => {
               <h3>FRONT END</h3>
               <h4>Desarrollo & Mantenimiento</h4>
               <p>
-                Desarrollo y mantenimiento de aplicaciones web y móviles, utilizando tecnologías
-                modernas y herramientas de vanguardia para asegurar una alta disponibilidad y
-                respuesta en aplicaciones críticas.
+                Especializado en la creación de interfaces de usuario robustas, escalables y optimizadas. Utilizo tecnologías modernas para reducir tiempos de carga y mejorar la retención del usuario.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
