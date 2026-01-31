@@ -3,6 +3,7 @@ import WorkImage from "./WorkImage";
 import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { trackProjectEvent } from "../utils/gtag";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,6 +47,7 @@ const Work = () => {
       ScrollTrigger.getById("work")?.kill();
     };
   }, []);
+
   interface Project {
     id: number;
     name: string;
@@ -97,6 +99,10 @@ const Work = () => {
     }
   ];
 
+  const handleTitleClick = (project: Project, position: number) => {
+    trackProjectEvent("click_title", project, position);
+  };
+
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
@@ -104,14 +110,19 @@ const Work = () => {
           Mis <span>proyectos</span>
         </h2>
         <div className="work-flex">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <div className="work-box" key={project.id}>
               <div className="work-info">
                 <div className="work-title">
                   <h3>0{project.id}</h3>
 
                   <div>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => handleTitleClick(project, index + 1)}
+                    >
                       <h4>{project.name}</h4>
                     </a>
                     <p>{project.category}</p>
@@ -125,6 +136,8 @@ const Work = () => {
                 alt={project.alt}
                 video={project.video ? project.video : undefined}
                 link={project.link}
+                project={project}
+                position={index + 1}
               />
             </div>
           ))}

@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
-import { trackEvent } from "../utils/gtag";
+import { trackProjectEvent } from "../utils/gtag";
 
 interface Props {
   image: string;
   alt?: string;
   video?: string;
   link?: string;
+  project: {
+    id: number;
+    name: string;
+    category: string;
+    link: string;
+  };
+  position: number;
 }
 
 const WorkImage = (props: Props) => {
@@ -22,6 +29,10 @@ const WorkImage = (props: Props) => {
     }
   };
 
+  const handleImageClick = () => {
+    trackProjectEvent("click_image", props.project, props.position);
+  };
+
   return (
     <div className="work-image">
       <a
@@ -29,7 +40,7 @@ const WorkImage = (props: Props) => {
         href={props.link}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsVideo(false)}
-        onClick={() => trackEvent("select_item", { item_id: props.alt, item_link: props.link })}
+        onClick={handleImageClick}
         target="_blank"
         data-cursor={"disable"}
       >

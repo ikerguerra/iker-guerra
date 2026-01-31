@@ -21,7 +21,7 @@ export function setCharTimeline() {
     scrollTrigger: {
       trigger: ".landing-section",
       start: "top top",
-      end: "bottom top",
+      end: "bottom+=50% top", // Extender el rango para animaciones más suaves
       scrub: true,
       invalidateOnRefresh: true,
     },
@@ -94,10 +94,10 @@ export function setCharTimeline() {
     tl3
       .to(
         ".character-model",
-        { opacity: 0, y: "-100%", xPercent: -50, duration: 4, ease: "power1.inOut" },
+        { opacity: 0, y: "-100%", xPercent: -50, duration: 4, ease: "none" },
         0
       )
-      .fromTo(".whatIDO", { y: 0 }, { y: "15%", duration: 2 }, 0);
+      .fromTo(".whatIDO", { y: 0 }, { y: "15%", duration: 4, ease: "none" }, 0);
 
     // Forzar refresco de ScrollTrigger para recalcular todas las posiciones
     ScrollTrigger.refresh();

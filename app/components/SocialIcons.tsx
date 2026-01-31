@@ -7,7 +7,7 @@ import {
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
-import { trackEvent } from "../utils/gtag";
+import { trackEvent, trackSocialClick } from "../utils/gtag";
 import HoverLinks from "./HoverLinks";
 
 const SocialIcons = () => {
@@ -61,12 +61,22 @@ const SocialIcons = () => {
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
-          <a href="https://github.com/ikerguerra" target="_blank" aria-label="Github de Iker Guerra">
+          <a
+            href="https://github.com/ikerguerra"
+            target="_blank"
+            aria-label="Github de Iker Guerra"
+            onClick={() => trackSocialClick("github", "https://github.com/ikerguerra")}
+          >
             <FaGithub />
           </a>
         </span>
         <span>
-          <a href="https://www.linkedin.com/in/iker-guerra-mielgo" target="_blank" aria-label="LinkedIn de Iker Guerra">
+          <a
+            href="https://www.linkedin.com/in/iker-guerra-mielgo"
+            target="_blank"
+            aria-label="LinkedIn de Iker Guerra"
+            onClick={() => trackSocialClick("linkedin", "https://www.linkedin.com/in/iker-guerra-mielgo")}
+          >
             <FaLinkedinIn />
           </a>
         </span>
