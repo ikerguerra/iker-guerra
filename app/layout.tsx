@@ -56,10 +56,10 @@ export const metadata: Metadata = {
     siteName: "Iker Guerra Portfolio",
     images: [
       {
-        url: "/images/web-eterna-diagnostics.png", // Using a real project image as fallback OG
+        url: "/iker-guerra-og.png",
         width: 1200,
         height: 630,
-        alt: "Iker Guerra Portfolio Presentation",
+        alt: "Iker Guerra - Full Stack Developer",
       },
     ],
   },
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Iker Guerra | Full Stack Developer",
     description: "Desarrollador Full Stack especializado en Next.js y React.",
-    images: ["/images/web-eterna-diagnostics.png"],
+    images: ["/iker-guerra-og.png"],
     creator: "@ikerguerra",
   },
   robots: {
