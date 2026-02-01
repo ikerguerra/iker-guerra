@@ -53,10 +53,10 @@ export const metadata: Metadata = {
     url: BASE_URL,
     title: "Iker Guerra | Full Stack Developer",
     description: "Explora los proyectos y la carrera de Iker Guerra, Desarrollador Full Stack experto en soluciones modernas y escalables.",
-    siteName: "Iker Guerra Portfolio",
+    siteName: "Iker Guerra",
     images: [
       {
-        url: "/iker-guerra-og.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Iker Guerra - Full Stack Developer",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Iker Guerra | Full Stack Developer",
     description: "Desarrollador Full Stack especializado en Next.js y React.",
-    images: ["/iker-guerra-og.png"],
+    images: ["/opengraph-image"],
     creator: "@ikerguerra",
   },
   robots: {
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
+const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Iker Guerra",
@@ -100,6 +100,13 @@ const jsonLd = {
     "https://github.com/ikerguerra",
   ],
   description: "Desarrollador Full Stack especializado en Next.js, React y escalabilidad.",
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Iker Guerra",
+  url: BASE_URL,
 };
 
 export default function RootLayout({
@@ -117,7 +124,11 @@ export default function RootLayout({
         )}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         {children}
       </body>
