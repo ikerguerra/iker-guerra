@@ -62,34 +62,43 @@ const Work = () => {
   const projects: Project[] = [
     {
       id: 1,
+      name: "Eterna Diagnostics",
+      category: "Desarrollo web",
+      tools: "Next.js, React, TypeScript, Tailwind CSS",
+      image: "/images/web-eterna-diagnostics.png",
+      alt: "Página web Eterna Diagnostics",
+      link: "https://eternadx.com"
+    },
+    {
+      id: 2,
+      name: "Eleva HPS",
+      category: "Desarrollo web",
+      tools: "Next.js, React, TypeScript, Tailwind CSS",
+      image: "/images/web-eleva-hps.png",
+      alt: "Página web Eleva HPS",
+      link: "https://elevahps.com"
+    },
+    {
+      id: 3,
       name: "Construcciones MBL",
       category: "Desarrollo web",
-      tools: "Next.js, React, TypeScript",
+      tools: "Next.js, React, TypeScript, Bootstrap",
       image: "/images/project-construcciones.png",
       alt: "Página web Construcciones MBL",
       link: "https://construccionesmbl.vercel.app"
       // video: "project-construcciones.mp4"
     },
     {
-      id: 2,
-      name: "Eterna Diagnostics",
-      category: "Desarrollo web",
-      tools: "Next.js, React, TypeScript",
-      image: "/images/web-eterna-diagnostics.png",
-      alt: "Página web Eterna Diagnostics",
-      link: "https://eternadx.com"
-    },
-    {
-      id: 3,
-      name: "Eleva HPS",
-      category: "Desarrollo web",
-      tools: "Next.js, React, TypeScript",
-      image: "/images/web-eleva-hps.png",
-      alt: "Página web Eleva HPS",
-      link: "https://elevahps.com"
-    },
-    {
       id: 4,
+      name: "Gif Expert App",
+      category: "Desarrollo web",
+      tools: "React 18, JavaScript, Vite, CSS3, Giphy API, Jest",
+      image: "/images/gif-expert-app.png",
+      alt: "Página web Gif Expert App",
+      link: "https://ikerguerra.github.io/react-gifexpert/"
+    },
+    {
+      id: 5,
       name: "Mundo zapas",
       category: "Desarrollo web",
       tools: "HTML, CSS, Javascript, PHP, MySQL",
