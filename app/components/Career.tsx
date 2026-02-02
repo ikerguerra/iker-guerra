@@ -1,8 +1,12 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useLayoutEffect, useRef } from "react";
 import { LazyMotion, domAnimation, m } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./styles/Career.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface CareerExperience {
   year: string;
@@ -66,9 +70,33 @@ const CareerItem = memo(({ experience, index }: { experience: CareerExperience; 
 CareerItem.displayName = "CareerItem";
 
 const Career = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 20%",
+          end: "bottom 30%",
+          scrub: 1,
+        },
+      });
+
+      tl.fromTo(
+        timelineRef.current,
+        { height: "0%" },
+        { height: "100%", ease: "none" }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <LazyMotion features={domAnimation}>
-      <div className="career-section section-container">
+      <div className="career-section section-container" ref={containerRef}>
         <div className="career-container">
           <m.h2
             initial={{ opacity: 0, y: 30 }}
@@ -80,15 +108,9 @@ const Career = () => {
             <br /> experiencia
           </m.h2>
           <div className="career-info">
-            <m.div
-              className="career-timeline"
-              initial={{ height: 0 }}
-              whileInView={{ height: "100%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-            >
+            <div className="career-timeline" ref={timelineRef}>
               <div className="career-dot"></div>
-            </m.div>
+            </div>
             {CAREER_DATA.map((exp, index) => (
               <CareerItem key={`${exp.company}-${index}`} experience={exp} index={index} />
             ))}
