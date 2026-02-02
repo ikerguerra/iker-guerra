@@ -35,10 +35,7 @@ const WhatIDo = () => {
     <div className="whatIDO">
       <div className="what-box">
         <h2 className="title">
-          LO <span className="hat-h2">QUE</span>
-          <div>
-            <span className="do-h2">HAGO</span>
-          </div>
+          LO QUE <span className="do-h2">HAGO</span>
         </h2>
       </div>
       <div className="what-box">
@@ -99,7 +96,7 @@ const WhatIDo = () => {
               <p>
                 Especializado en la creación de interfaces de usuario robustas, escalables y optimizadas. Utilizo tecnologías modernas para reducir tiempos de carga y mejorar la retención del usuario.
               </p>
-              <h5>Skillset & tools</h5>
+              <h5>Tecnologías</h5>
               <div className="what-content-flex">
                 <div className="what-tags">HTML</div>
                 <div className="what-tags">CSS</div>
@@ -140,7 +137,7 @@ const WhatIDo = () => {
                 modernas y herramientas de vanguardia para asegurar una alta disponibilidad y
                 respuesta en aplicaciones críticas.
               </p>
-              <h5>Skillset & tools</h5>
+              <h5>Tecnologías</h5>
               <div className="what-content-flex">
                 <div className="what-tags">Java</div>
                 <div className="what-tags">Spring</div>

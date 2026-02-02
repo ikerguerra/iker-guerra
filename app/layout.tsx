@@ -109,6 +109,10 @@ const websiteJsonLd = {
   url: BASE_URL,
 };
 
+import SmoothScrolling from "./components/SmoothScrolling";
+
+// ... existing imports ...
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -119,6 +123,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${stormGust.variable} ${styro.variable} antialiased`}
       >
+        <SmoothScrolling />
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         )}

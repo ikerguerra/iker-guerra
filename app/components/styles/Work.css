@@ -177,43 +177,34 @@
   }
 }
 
-@media only screen and (max-width: 1400px) {
-  .work-title h3 {
-    font-size: 35px;
-  }
-
-  .work-info p {
-    font-size: 13px;
-  }
-
-  .work-info h4 {
-    font-size: 15px;
-  }
-
+@media only screen and (max-width: 1600px) {
   .work-box {
-    width: 450px;
-    padding: 50px;
+    width: 500px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .work-box {
+    width: 600px;
+    /* Make them wider on smaller screens to show fewer */
   }
 
   .work-flex {
     margin-left: -50px;
     padding-right: 75px;
   }
-
-  .work-section h2 {
-    font-size: 50px;
-  }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 900px) {
   .work-box {
-    width: 350px;
+    width: 80vw;
+    /* On mobile/tablet, show mainly one card with peek */
     padding: 30px;
   }
 
   .work-flex {
-    margin-left: -30px;
-    padding-right: 45px;
+    margin-left: -20px;
+    padding-right: 40px;
   }
 }
 
