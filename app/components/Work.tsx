@@ -61,7 +61,16 @@ const Work = () => {
 
   const projects: Project[] = [
     {
-      id: 1,
+      "id": 1,
+      "name": "Blueprint AI",
+      "category": "Inteligencia Artificial / SaaS",
+      "tools": "Next.js 15, React, TypeScript, Tailwind CSS, Prisma, Supabase, Gemini AI",
+      "image": "/images/blueprint-ai.png",
+      "alt": "Plataforma de gestión documental Blueprint AI",
+      "link": "https://blueprint-ai-sigma.vercel.app"
+    },
+    {
+      id: 2,
       name: "Eterna Diagnostics",
       category: "Desarrollo web",
       tools: "Next.js, React, TypeScript, Tailwind CSS",
@@ -70,7 +79,7 @@ const Work = () => {
       link: "https://eternadx.com"
     },
     {
-      id: 2,
+      id: 3,
       name: "Eleva HPS",
       category: "Desarrollo web",
       tools: "Next.js, React, TypeScript, Tailwind CSS",
@@ -79,7 +88,7 @@ const Work = () => {
       link: "https://elevahps.com"
     },
     {
-      id: 3,
+      id: 4,
       name: "Construcciones MBL",
       category: "Desarrollo web",
       tools: "Next.js, React, TypeScript, Bootstrap",
@@ -89,7 +98,7 @@ const Work = () => {
       // video: "project-construcciones.mp4"
     },
     {
-      id: 4,
+      id: 5,
       name: "Gif Expert App",
       category: "Desarrollo web",
       tools: "React 18, JavaScript, Vite, CSS3, Giphy API, Jest",
@@ -98,7 +107,7 @@ const Work = () => {
       link: "https://ikerguerra.github.io/react-gifexpert/"
     },
     {
-      id: 5,
+      id: 6,
       name: "Mundo zapas",
       category: "Desarrollo web",
       tools: "HTML, CSS, Javascript, PHP, MySQL",
