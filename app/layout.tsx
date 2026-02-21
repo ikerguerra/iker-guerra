@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     siteName: "Iker Guerra",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/images/iker-guerra-og.png",
         width: 1200,
         height: 630,
         alt: "Iker Guerra - Full Stack Developer",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Iker Guerra | Full Stack Developer",
     description: "Desarrollador Full Stack especializado en Next.js y React.",
-    images: ["/opengraph-image"],
+    images: ["/images/iker-guerra-og.png"],
     creator: "@ikerguerra",
   },
   robots: {
