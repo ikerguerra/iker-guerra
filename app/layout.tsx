@@ -110,6 +110,7 @@ const websiteJsonLd = {
 };
 
 import SmoothScrolling from "./components/SmoothScrolling";
+import NextTopLoader from 'nextjs-toploader';
 
 // ... existing imports ...
 
@@ -123,6 +124,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${stormGust.variable} ${styro.variable} antialiased`}
       >
+        <NextTopLoader color="#fff" showSpinner={false} />
         <SmoothScrolling />
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />

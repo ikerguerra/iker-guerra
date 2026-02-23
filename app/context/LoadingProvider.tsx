@@ -20,13 +20,28 @@ export const LoadingContext = createContext<LoadingType | null>(null);
 export const LoadingProvider = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loading, setLoading] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    if (sessionStorage.getItem("hasLoadedInitial")) {
+      setIsLoading(false);
+    }
+  }, []);
 
   const value = {
     isLoading,
     setIsLoading,
     setLoading,
   };
-  useEffect(() => { }, [loading]);
+
+  if (!mounted) {
+    return (
+      <LoadingContext.Provider value={value as LoadingType}>
+        <main className="main-body">{children}</main>
+      </LoadingContext.Provider>
+    );
+  }
 
   return (
     <LoadingContext.Provider value={value as LoadingType}>

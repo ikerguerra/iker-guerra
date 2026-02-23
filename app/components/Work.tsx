@@ -1,52 +1,50 @@
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
-import { useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { trackProjectEvent } from "../utils/gtag";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Work = () => {
-  useEffect(() => {
-    let translateX: number = 0;
+  const containerRef = useRef<HTMLDivElement>(null);
 
-    function setTranslateX() {
-      const box = document.getElementsByClassName("work-box");
-      const rectLeft = document
-        .querySelector(".work-container")!
-        .getBoundingClientRect().left;
-      const rect = box[0].getBoundingClientRect();
-      const parentWidth = box[0].parentElement!.getBoundingClientRect().width;
+  useGSAP(() => {
+    function getTranslateX() {
+      // Use gsap scoped query instead of global document query
+      const boxes = gsap.utils.toArray(".work-box") as HTMLElement[];
+      if (boxes.length === 0) return 0;
+
+      const workContainer = containerRef.current?.querySelector(".work-container") as HTMLElement;
+      if (!workContainer) return 0;
+
+      const rectLeft = workContainer.getBoundingClientRect().left;
+      const rect = boxes[0].getBoundingClientRect();
+      const parentWidth = boxes[0].parentElement!.getBoundingClientRect().width;
       let padding: number =
-        parseInt(window.getComputedStyle(box[0]).padding) / 2;
-      translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
+        parseInt(window.getComputedStyle(boxes[0]).padding) / 2;
+      return rect.width * boxes.length - (rectLeft + parentWidth) + padding;
     }
-
-    setTranslateX();
 
     let timeline = gsap.timeline({
       scrollTrigger: {
-        trigger: ".work-section",
+        trigger: containerRef.current,
         start: "top top",
-        end: `+=${translateX}`, // Use actual scroll width
+        end: () => `+=${getTranslateX()}`, // Recalculate dynamically
         scrub: true,
         pin: true,
+        invalidateOnRefresh: true, // Key to keeping it unbroken on resize/navigation
         id: "work",
       },
     });
 
     timeline.to(".work-flex", {
-      x: -translateX,
+      x: () => -getTranslateX(),
       ease: "none",
     });
-
-    // Clean up (optional, good practice)
-    return () => {
-      timeline.kill();
-      ScrollTrigger.getById("work")?.kill();
-    };
-  }, []);
+  }, { scope: containerRef });
 
   interface Project {
     id: number;
@@ -122,7 +120,7 @@ const Work = () => {
   };
 
   return (
-    <div className="work-section" id="work">
+    <div className="work-section" id="work" ref={containerRef}>
       <div className="work-container section-container">
         <h2>
           Mis <span>proyectos</span>

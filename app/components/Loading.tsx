@@ -29,11 +29,12 @@ const Loading = ({ percent }: { percent: number }) => {
           if (module.initialFX) {
             module.initialFX();
           }
+          sessionStorage.setItem("hasLoadedInitial", "true");
           setIsLoading(false);
         }, 900);
       }
     });
-  }, [isLoaded]);
+  }, [isLoaded, setIsLoading]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget: target } = e;

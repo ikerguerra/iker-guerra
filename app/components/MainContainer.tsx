@@ -32,12 +32,18 @@ const MainContainer = ({ children }: PropsWithChildren) => {
 
     return () => {
       window.removeEventListener("resize", resizeHandler);
-      // Limpiar ScrollTriggers al desmontar
-      import("gsap/ScrollTrigger").then((module) => {
-        module.ScrollTrigger.getAll().forEach(st => st.kill());
-      });
+      // Removed global ScrollTrigger kill here because it is async and kills triggers from remounted components in Next.js navigation/StrictMode.
     };
   }, []);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("hasLoadedInitial")) {
+      import("./utils/initialFX").then((module) => {
+        module.bypassFX();
+      });
+    }
+  }, []);
+
 
   return (
     <div className="container-main">

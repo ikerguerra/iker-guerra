@@ -4,10 +4,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
+let activeTimelines: gsap.core.Timeline[] = [];
+
 /**
  * 
  */
 export function setCharTimeline() {
+  // Kill old timelines to prevent stacking on resize
+  activeTimelines.forEach(tl => tl.kill());
+  activeTimelines = [];
   // Ensure DOM elements exist before creating timelines
   if (
     !document.querySelector(".landing-section") ||
@@ -101,6 +106,7 @@ export function setCharTimeline() {
 
     // Forzar refresco de ScrollTrigger para recalcular todas las posiciones
     ScrollTrigger.refresh();
+    activeTimelines.push(tl1, tl2, tl3);
   } else {
     const tM2 = gsap.timeline({
       scrollTrigger: {
@@ -110,61 +116,10 @@ export function setCharTimeline() {
       },
     });
     tM2.to(".what-box-in", { display: "flex", duration: 0.1, delay: 0 }, 0);
+    activeTimelines.push(tM2);
   }
 }
 
 export function setAllTimeline() {
-  if (!document.querySelector(".career-section")) {
-    return;
-  }
-
-  const careerTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".career-section",
-      start: "top 30%",
-      end: "100% center",
-      scrub: true,
-      invalidateOnRefresh: true,
-    },
-  });
-
-  careerTimeline
-    .fromTo(
-      ".career-timeline",
-      { maxHeight: "10%" },
-      { maxHeight: "100%", duration: 0.5 },
-      0
-    )
-    .fromTo(
-      ".career-timeline",
-      { opacity: 0 },
-      { opacity: 1, duration: 0.1 },
-      0
-    )
-    .fromTo(
-      ".career-dot",
-      { animationIterationCount: "infinite" },
-      {
-        animationIterationCount: "1",
-        delay: 0.3,
-        duration: 0.1,
-      },
-      0
-    );
-
-  if (window.innerWidth > 1024) {
-    careerTimeline.fromTo(
-      ".career-section",
-      { y: 0 },
-      { y: "20%", duration: 0.5, delay: 0.2 },
-      0
-    );
-  } else {
-    careerTimeline.fromTo(
-      ".career-section",
-      { y: 0 },
-      { y: 0, duration: 0.5, delay: 0.2 },
-      0
-    );
-  }
+  // Logic migrated to Career.tsx using useGSAP for component lifecycles
 }

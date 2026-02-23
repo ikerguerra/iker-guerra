@@ -26,13 +26,20 @@ const Navbar = () => {
       let element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
         if (window.innerWidth > 1024) {
-          e.preventDefault();
+
           let elem = e.currentTarget as HTMLAnchorElement;
           let section = elem.getAttribute("data-href");
           if (section) {
+
+            // Allow default behavior if navigating to /contacto
+            if (section === "/contacto") return;
+
+            e.preventDefault();
             const targetElement = document.querySelector(section);
             if (targetElement) {
               targetElement.scrollIntoView({ behavior: "smooth" });
+            } else {
+              window.location.href = "/" + section;
             }
           }
         }
@@ -54,17 +61,17 @@ const Navbar = () => {
         </a>
         <ul>
           <li>
-            <a data-href="#about" href="#about">
+            <a data-href="#about" href="/#about">
               <HoverLinks text="SOBRE MÍ" />
             </a>
           </li>
           <li>
-            <a data-href="#work" href="#work">
+            <a data-href="#work" href="/#work">
               <HoverLinks text="PROYECTOS" />
             </a>
           </li>
           <li>
-            <a data-href="#contact" href="#contact">
+            <a data-href="/contacto" href="/contacto">
               <HoverLinks text="CONTACTO" />
             </a>
           </li>

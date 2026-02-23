@@ -1,9 +1,10 @@
 "use client";
 
-import { memo, useLayoutEffect, useRef } from "react";
+import { memo, useRef } from "react";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import "./styles/Career.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -73,26 +74,39 @@ const Career = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 20%",
-          end: "bottom 30%",
-          scrub: 1,
-        },
-      });
+  useGSAP(() => {
+    const isDesktop = window.innerWidth > 1024;
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 30%",
+        end: "100% center",
+        scrub: 1,
+        invalidateOnRefresh: true,
+      },
+    });
 
+    tl.fromTo(
+      timelineRef.current,
+      { height: "10%", opacity: 0 },
+      { height: "100%", opacity: 1, duration: 0.5, ease: "none" },
+      0
+    ).fromTo(
+      ".career-dot",
+      { animationIterationCount: "infinite" },
+      { animationIterationCount: "1", delay: 0.3, duration: 0.1 },
+      0
+    );
+
+    if (isDesktop) {
       tl.fromTo(
-        timelineRef.current,
-        { height: "0%" },
-        { height: "100%", ease: "none" }
+        containerRef.current,
+        { y: 0 },
+        { y: "20%", duration: 0.5, delay: 0.2 },
+        0
       );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+    }
+  }, { scope: containerRef });
 
   return (
     <LazyMotion features={domAnimation}>
