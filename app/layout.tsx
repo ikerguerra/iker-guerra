@@ -111,8 +111,7 @@ const websiteJsonLd = {
 
 import SmoothScrolling from "./components/SmoothScrolling";
 import NextTopLoader from 'nextjs-toploader';
-
-// ... existing imports ...
+import Clarity from "./components/Clarity";
 
 export default function RootLayout({
   children,
@@ -138,6 +137,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         {children}
+        <Clarity />
       </body>
     </html>
   );
