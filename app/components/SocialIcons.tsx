@@ -88,7 +88,9 @@ const SocialIcons = () => {
         rel="noopener noreferrer"
         onClick={() => trackEvent("download_cv", { file_name: "CVIkerGuerraMielgo.pdf" })}
       >
-        <HoverLinks text="CURRICULUM" />
+        <div className="resume-content-wrapper">
+          <HoverLinks text="CURRICULUM" />
+        </div>
         <span>
           <TbNotes />
         </span>
