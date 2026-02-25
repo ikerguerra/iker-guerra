@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import { MdArrowOutward } from "react-icons/md";
 import { trackProjectEvent } from "../utils/gtag";
 
@@ -49,7 +50,15 @@ const WorkImage = (props: Props) => {
             <MdArrowOutward />
           </div>
         )}
-        <img src={props.image} alt={props.alt} />
+        <Image
+          src={props.image}
+          alt={props.alt ?? ""}
+          width={800}
+          height={450}
+          sizes="(max-width: 900px) 80vw, (max-width: 1600px) 420px, 500px"
+          quality={85}
+          style={{ maxWidth: "100%", maxHeight: "350px", height: "auto" }}
+        />
         {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
       </a>
     </div>

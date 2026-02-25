@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { MdArrowOutward, MdCopyright } from "react-icons/md";
+import { MdArrowOutward } from "react-icons/md";
 import emailjs from "@emailjs/browser";
 import { trackEvent } from "../utils/gtag";
+import Footer from "./Footer";
 import "./styles/Contact.css";
 
 const Contact = () => {
@@ -131,16 +132,7 @@ const Contact = () => {
           </form>
         </div>
 
-        <div className="contact-footer">
-          <div className="footer-left">
-            <p>Desarrollado con NextJS</p>
-          </div>
-          <div className="footer-right">
-            <p>
-              <MdCopyright /> {new Date().getFullYear()} Iker Guerra
-            </p>
-          </div>
-        </div>
+        <Footer />
       </div>
     </div>
   );

@@ -31,8 +31,8 @@ const Navbar = () => {
           let section = elem.getAttribute("data-href");
           if (section) {
 
-            // Allow default behavior if navigating to /contacto
-            if (section === "/contacto") return;
+            // Allow default behavior if navigating to separate pages
+            if (section === "/contacto" || section === "/proyectos") return;
 
             e.preventDefault();
             const targetElement = document.querySelector(section);
@@ -66,7 +66,7 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a data-href="#work" href="/#work">
+            <a data-href="/proyectos" href="/proyectos">
               <HoverLinks text="PROYECTOS" />
             </a>
           </li>

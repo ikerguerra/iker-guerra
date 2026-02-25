@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { trackProjectEvent } from "../utils/gtag";
+import { projectsData, Project } from "../data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,74 +47,6 @@ const Work = () => {
     });
   }, { scope: containerRef });
 
-  interface Project {
-    id: number;
-    name: string;
-    category: string;
-    tools: string;
-    image: string;
-    alt: string;
-    video?: string;
-    link: string;
-  }
-
-  const projects: Project[] = [
-    {
-      "id": 1,
-      "name": "Blueprint AI",
-      "category": "Inteligencia Artificial / SaaS",
-      "tools": "Next.js 15, React, TypeScript, Tailwind CSS, Prisma, Supabase, Gemini AI",
-      "image": "/images/blueprint-ai.png",
-      "alt": "Plataforma de gestión documental Blueprint AI",
-      "link": "https://blueprint-ai-sigma.vercel.app"
-    },
-    {
-      id: 2,
-      name: "Eterna Diagnostics",
-      category: "Desarrollo web",
-      tools: "Next.js, React, TypeScript, Tailwind CSS",
-      image: "/images/web-eterna-diagnostics.png",
-      alt: "Página web Eterna Diagnostics",
-      link: "https://eternadx.com"
-    },
-    {
-      id: 3,
-      name: "Eleva HPS",
-      category: "Desarrollo web",
-      tools: "Next.js, React, TypeScript, Tailwind CSS",
-      image: "/images/web-eleva-hps.png",
-      alt: "Página web Eleva HPS",
-      link: "https://elevahps.com"
-    },
-    {
-      id: 4,
-      name: "Construcciones MBL",
-      category: "Desarrollo web",
-      tools: "Next.js, React, TypeScript, Bootstrap",
-      image: "/images/project-construcciones.png",
-      alt: "Página web Construcciones MBL",
-      link: "https://construccionesmbl.vercel.app"
-      // video: "project-construcciones.mp4"
-    },
-    {
-      id: 5,
-      name: "Gif Expert App",
-      category: "Desarrollo web",
-      tools: "React 18, JavaScript, Vite, CSS3, Giphy API, Jest",
-      image: "/images/gif-expert-app.png",
-      alt: "Página web Gif Expert App",
-      link: "https://ikerguerra.github.io/react-gifexpert/"
-    },
-    {
-      id: 6,
-      name: "Mundo zapas",
-      category: "Desarrollo web",
-      tools: "HTML, CSS, Javascript, PHP, MySQL",
-      image: "/images/mundozapas.png",
-      alt: "Página web Mundo zapas",
-      link: "https://mundozapas.ct.ws"
-    }
-  ];
 
   const handleTitleClick = (project: Project, position: number) => {
     trackProjectEvent("click_title", project, position);
@@ -126,7 +59,7 @@ const Work = () => {
           Mis <span>proyectos</span>
         </h2>
         <div className="work-flex">
-          {projects.map((project, index) => (
+          {projectsData.map((project, index) => (
             <div className="work-box" key={project.id}>
               <div className="work-info">
                 <div className="work-title">
@@ -144,6 +77,7 @@ const Work = () => {
                     <p>{project.category}</p>
                   </div>
                 </div>
+                <p className="work-description">{project.description}</p>
                 <h4>Herramientas</h4>
                 <p>{project.tools}</p>
               </div>

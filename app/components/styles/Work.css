@@ -109,6 +109,15 @@
   width: 90%;
 }
 
+.work-description {
+  font-size: 14px;
+  font-weight: 300;
+  color: #adacac;
+  line-height: 1.6;
+  margin: 0 0 8px 0;
+  width: 90%;
+}
+
 .work-image {
   display: flex;
   width: 100%;

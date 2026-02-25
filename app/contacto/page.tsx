@@ -1,7 +1,7 @@
 import ClientContactPage from "./ClientContactPage";
 
 export const metadata = {
-    title: "Contacto | Iker Guerra",
+    title: "Contacto",
     description: "Contacta conmigo para proyectos y colaboraciones.",
 };
 
