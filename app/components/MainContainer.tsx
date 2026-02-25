@@ -1,15 +1,15 @@
 "use client";
 
 import { lazy, PropsWithChildren, Suspense, useEffect, useState } from "react";
-import About from "./About";
-import Career from "./Career";
-import Contact from "./Contact";
+const About = lazy(() => import("./About"));
+const Career = lazy(() => import("./Career"));
+const Contact = lazy(() => import("./Contact"));
 import Cursor from "./Cursor";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
-import WhatIDo from "./WhatIDo";
-import Work from "./Work";
+const WhatIDo = lazy(() => import("./WhatIDo"));
+const Work = lazy(() => import("./Work"));
 import setSplitText from "./utils/splitText";
 
 const TechStack = lazy(() => import("./TechStack"));
@@ -75,16 +75,18 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       {isDesktopView && children}
       <div className="container-main">
         <Landing>{!isDesktopView && children}</Landing>
-        <About />
-        <WhatIDo />
-        <Career />
-        <Work />
-        {isDesktopView && load3D && (
-          <Suspense fallback={<div>Loading 3D Environment...</div>}>
-            <TechStack />
-          </Suspense>
-        )}
-        <Contact />
+        <Suspense fallback={<div style={{ minHeight: "100vh" }}></div>}>
+          <About />
+          <WhatIDo />
+          <Career />
+          <Work />
+          {isDesktopView && load3D && (
+            <Suspense fallback={<div>Loading 3D Environment...</div>}>
+              <TechStack />
+            </Suspense>
+          )}
+          <Contact />
+        </Suspense>
       </div>
     </div>
   );
