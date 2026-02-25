@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useLoading } from "../../context/LoadingProvider";
 import { setCharTimeline, setAllTimeline } from "../utils/GsapScroll";
-import profilePic from "../../assets/profile.png";
+import profilePic from "../../assets/profile.webp";
 import gsap from "gsap";
 
 const Scene = () => {
@@ -41,6 +41,7 @@ const Scene = () => {
               alt="Iker Guerra"
               className="profile-image"
               priority
+              sizes="(max-width: 768px) 80vw, 400px" // Explicit width prevents 1080w download
               style={{
                 width: 'auto',
                 height: '550px',

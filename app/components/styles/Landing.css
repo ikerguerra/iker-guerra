@@ -103,7 +103,7 @@
   left: 50%;
   transform: translate(-50%, 100%) scale(1.4);
   opacity: 0;
-  background-image: url("../../assets/profile.png");
+  background-image: url("../../assets/profile-rim.webp");
 }
 
 .character-model {
