@@ -13,12 +13,8 @@ export function setCharTimeline() {
   // Kill old timelines to prevent stacking on resize
   activeTimelines.forEach(tl => tl.kill());
   activeTimelines = [];
-  // Ensure DOM elements exist before creating timelines
-  if (
-    !document.querySelector(".landing-section") ||
-    !document.querySelector(".about-section") ||
-    !document.querySelector(".whatIDO")
-  ) {
+  // Ensure critical DOM elements exist before creating timelines
+  if (!document.querySelector(".landing-section")) {
     return;
   }
 

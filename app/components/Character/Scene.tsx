@@ -26,7 +26,7 @@ const Scene = () => {
       // Inicializar animaciones de GSAP para el DOM rápidamente
       setCharTimeline();
       setAllTimeline();
-    }, 100);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [setLoading]);
@@ -41,6 +41,8 @@ const Scene = () => {
               alt="Iker Guerra"
               className="profile-image"
               priority
+              width={1024}
+              height={1536}
               sizes="(max-width: 768px) 80vw, 400px" // Explicit width prevents 1080w download
               style={{
                 width: 'auto',

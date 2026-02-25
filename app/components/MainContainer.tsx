@@ -1,14 +1,14 @@
 "use client";
 
 import { lazy, PropsWithChildren, Suspense, useEffect, useState } from "react";
-const About = lazy(() => import("./About"));
+import About from "./About";
 const Career = lazy(() => import("./Career"));
 const Contact = lazy(() => import("./Contact"));
 import Cursor from "./Cursor";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
-const WhatIDo = lazy(() => import("./WhatIDo"));
+import WhatIDo from "./WhatIDo";
 const Work = lazy(() => import("./Work"));
 import setSplitText from "./utils/splitText";
 
