@@ -45,6 +45,28 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   }, []);
 
 
+  const [load3D, setLoad3D] = useState(false);
+
+  useEffect(() => {
+    const handleScrollOrInteraction = () => {
+      setLoad3D(true);
+      window.removeEventListener("scroll", handleScrollOrInteraction);
+      window.removeEventListener("mousemove", handleScrollOrInteraction);
+      window.removeEventListener("touchstart", handleScrollOrInteraction);
+    };
+
+    // Load 3D either on scroll or mouse move, so it never blocks the initial render
+    window.addEventListener("scroll", handleScrollOrInteraction, { once: true });
+    window.addEventListener("mousemove", handleScrollOrInteraction, { once: true });
+    window.addEventListener("touchstart", handleScrollOrInteraction, { once: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollOrInteraction);
+      window.removeEventListener("mousemove", handleScrollOrInteraction);
+      window.removeEventListener("touchstart", handleScrollOrInteraction);
+    };
+  }, []);
+
   return (
     <div className="container-main">
       <Cursor />
@@ -57,8 +79,8 @@ const MainContainer = ({ children }: PropsWithChildren) => {
         <WhatIDo />
         <Career />
         <Work />
-        {isDesktopView && (
-          <Suspense fallback={<div>Loading....</div>}>
+        {isDesktopView && load3D && (
+          <Suspense fallback={<div>Loading 3D Environment...</div>}>
             <TechStack />
           </Suspense>
         )}
