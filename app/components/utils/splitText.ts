@@ -19,7 +19,8 @@ export default function setSplitText() {
   const ToggleAction = "play pause resume reverse";
 
   paras.forEach((para: ParaElement) => {
-    para.classList.add("visible");
+    if (para.classList.contains("split-done")) return;
+    para.classList.add("visible", "split-done");
     if (para.anim) {
       para.anim.progress(1).kill();
       para.split?.revert();
@@ -48,6 +49,8 @@ export default function setSplitText() {
     );
   });
   titles.forEach((title: ParaElement) => {
+    if (title.classList.contains("split-done")) return;
+    title.classList.add("split-done");
     if (title.anim) {
       title.anim.progress(1).kill();
       title.split?.revert();
@@ -74,6 +77,4 @@ export default function setSplitText() {
       }
     );
   });
-
-  ScrollTrigger.addEventListener("refresh", () => setSplitText());
 }

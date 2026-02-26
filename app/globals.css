@@ -126,6 +126,8 @@ body {
   margin: auto;
   margin-top: 50px;
   margin-bottom: -100px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
 }
 
 .techstack h2 {

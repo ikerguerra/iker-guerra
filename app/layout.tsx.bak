@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./assets/fonts/Geist/Geist-VariableFont_wght.ttf",
+const geistSans = Geist({
   variable: "--font-geist-sans",
-  weight: "100 900",
+  subsets: ["latin"],
 });
 
-const geistMono = localFont({
-  src: "./assets/fonts/Geist_Mono/GeistMono-VariableFont_wght.ttf",
+const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  weight: "100 900",
+  subsets: ["latin"],
 });
 
 const stormGust = localFont({
@@ -120,8 +119,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${geistSans.variable} ${geistMono.variable} ${stormGust.variable} ${styro.variable}`}>
-      <body className="antialiased">
+    <html lang="es">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${stormGust.variable} ${styro.variable} antialiased`}
+      >
         <NextTopLoader color="#fff" showSpinner={false} />
         <SmoothScrolling />
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (

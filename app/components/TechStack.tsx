@@ -11,33 +11,13 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 
-const textureLoader = new THREE.TextureLoader();
-const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
-  "/images/angular.png",
-  "/images/java.png",
-];
-const textures = imageUrls.map((url) => textureLoader.load(url));
-
-const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
-
-const spheres = [...Array(30)].map(() => ({
-  scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
-}));
-
 type SphereProps = {
   vec?: THREE.Vector3;
   scale: number;
   r?: typeof THREE.MathUtils.randFloatSpread;
   material: THREE.MeshPhysicalMaterial;
   isActive: boolean;
+  geometry: THREE.BufferGeometry;
 };
 
 function SphereGeo({
@@ -46,6 +26,7 @@ function SphereGeo({
   r = THREE.MathUtils.randFloatSpread,
   material,
   isActive,
+  geometry,
 }: SphereProps) {
   const api = useRef<RapierRigidBody | null>(null);
 
@@ -85,7 +66,7 @@ function SphereGeo({
         castShadow
         receiveShadow
         scale={scale}
-        geometry={sphereGeometry}
+        geometry={geometry}
         material={material}
         rotation={[0.3, 1, 1]}
       />
@@ -129,6 +110,47 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
 const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
 
+  // Lazy initialize 3D resources only when the component executes
+  const { sphereGeometry, materials } = useMemo(() => {
+    const loader = new THREE.TextureLoader();
+    const imageUrls = [
+      "/images/react2.webp",
+      "/images/next2.webp",
+      "/images/node2.webp",
+      "/images/express.webp",
+      "/images/mongo.webp",
+      "/images/mysql.webp",
+      "/images/typescript.webp",
+      "/images/javascript.webp",
+      "/images/angular.png",
+      "/images/java.png",
+    ];
+
+    const textures = imageUrls.map((url) => loader.load(url));
+    const geometry = new THREE.SphereGeometry(1, 28, 28);
+    const mats = textures.map(
+      (texture) =>
+        new THREE.MeshPhysicalMaterial({
+          map: texture,
+          emissive: "#ffffff",
+          emissiveMap: texture,
+          emissiveIntensity: 0.3,
+          metalness: 0.5,
+          roughness: 1,
+          clearcoat: 0.1,
+        })
+    );
+
+    return { sphereGeometry: geometry, materials: mats };
+  }, []);
+
+  const spheres = useMemo(() => {
+    return [...Array(30)].map(() => ({
+      scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
+    }));
+  }, []);
+
+  // ... rest of the component logic ...
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
@@ -152,20 +174,6 @@ const TechStack = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-  const materials = useMemo(() => {
-    return textures.map(
-      (texture) =>
-        new THREE.MeshPhysicalMaterial({
-          map: texture,
-          emissive: "#ffffff",
-          emissiveMap: texture,
-          emissiveIntensity: 0.3,
-          metalness: 0.5,
-          roughness: 1,
-          clearcoat: 0.1,
-        })
-    );
   }, []);
 
   return (
@@ -201,6 +209,7 @@ const TechStack = () => {
             <SphereGeo
               key={i}
               {...props}
+              geometry={sphereGeometry} // Pass geometry as prop
               material={materials[Math.floor(Math.random() * materials.length)]}
               isActive={isActive}
             />
