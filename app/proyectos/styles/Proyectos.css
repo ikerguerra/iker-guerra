@@ -101,14 +101,15 @@
 .project-card-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: all 0.4s ease;
     z-index: 2;
 }
 
@@ -118,11 +119,14 @@
     }
 }
 
-.project-action-btn {
+.project-card-overlay .project-action-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 0;
+    width: 200px;
+    /* Equitable width */
     border-radius: 50px;
     font-size: 15px;
     font-weight: 500;
@@ -162,6 +166,19 @@
     .secondary-btn:hover {
         background-color: rgba(255, 255, 255, 0.1);
         border-color: #fff;
+    }
+}
+
+.tertiary-btn {
+    background-color: #fff;
+    color: var(--backgroundColor);
+    border: 2px solid #fff;
+}
+
+@media (hover: hover) {
+    .tertiary-btn:hover {
+        background-color: transparent;
+        color: #fff;
     }
 }
 
@@ -228,10 +245,11 @@
         padding-bottom: 20px;
     }
 
-    .project-action-btn {
+    .project-card-overlay .project-action-btn {
         transform: translateY(0);
         opacity: 1;
-        padding: 10px 20px;
+        padding: 10px 0;
+        width: 180px;
         font-size: 14px;
     }
 

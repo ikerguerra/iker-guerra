@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { FiArrowUpRight, FiGithub } from "react-icons/fi";
+import { FiArrowUpRight, FiGithub, FiGlobe } from "react-icons/fi";
 import Cursor from "../components/Cursor";
 import Navbar from "../components/Navbar";
 import SocialIcons from "../components/SocialIcons";
@@ -85,14 +85,21 @@ export default function ProyectosPage() {
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 420px"
                                     />
                                     <div className="project-card-overlay">
+                                        <Link
+                                            href={`/proyectos/${project.slug}`}
+                                            className="project-action-btn primary-btn"
+                                            aria-label={`Ver detalles del proyecto ${project.name}`}
+                                        >
+                                            Ver Detalles <FiArrowUpRight />
+                                        </Link>
                                         <a
                                             href={project.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="project-action-btn primary-btn"
-                                            aria-label={`Visitar proyecto ${project.name}`}
+                                            className="project-action-btn tertiary-btn"
+                                            aria-label={`Visitar web de ${project.name}`}
                                         >
-                                            Ver Proyecto <FiArrowUpRight />
+                                            <FiGlobe /> Visitar Web
                                         </a>
                                         {project.github && (
                                             <a
