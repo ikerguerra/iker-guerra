@@ -27,7 +27,7 @@ export const projectsData: Project[] = [
         image: "/images/blueprint-ai.webp",
         alt: "Plataforma de gestión documental Blueprint AI",
         link: "https://blueprint-ai-sigma.vercel.app",
-        github: "https://github.com/iker-guerra/blueprint-ai",
+        github: "https://github.com/ikerguerra/blueprint-ai",
         longDescription: "Blueprint AI es una plataforma SaaS B2B diseñada para empresas que manejan grandes volúmenes de documentación técnica. Mediante el uso de RAG (Retrieval-Augmented Generation) y la API de Gemini, permite consultar información específica de manuales, normativas o informes conversando naturalmente con un agente inteligente.",
         features: [
             "Arquitectura multi-tenant para aislar datos entre organizaciones",
@@ -53,7 +53,7 @@ export const projectsData: Project[] = [
         description: "Aplicación PWA de seguimiento nutricional con React, Vite y Shadcn UI. Visualiza tus macros, escanea códigos de barras y gestiona tu dieta diaria.",
         category: "Desarrollo web",
         tools: "React, Vite, TypeScript, Tailwind CSS, Shadcn UI",
-        image: "/images/placeholder.webp",
+        image: "/images/nutrition-tracker-pwa.webp",
         alt: "Página web Nutrition Tracker",
         link: "https://nutrition-tracker-sigma.vercel.app",
         longDescription: "Nutrition Tracker es una Progressive Web App (PWA) enfocada en facilitar a los usuarios llevar un registro preciso de su ingesta calórica y de macronutrientes. Cuenta con una interfaz intuitiva, diseñada para uso frecuente desde dispositivos móviles.",
@@ -78,7 +78,7 @@ export const projectsData: Project[] = [
         link: "https://eternadx.com",
         longDescription: "Landing page corporativa moderna diseñada para destacar los servicios médicos y la tecnología puntera del laboratorio clínico. El proyecto se centra en una experiencia de usuario limpia, profesional y rápida para transmitir confianza y claridad.",
         features: [
-            "Diseño UI/UX sobrio y orientado al sector médico",
+            "Diseño UI/UX moderno y orientado al sector médico",
             "Optimización extrema de rendimiento y SEO",
             "Integración de formularios de contacto seguros",
             "Arquitectura escalable para futuros portales de pacientes"

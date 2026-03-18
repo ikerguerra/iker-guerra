@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { FiArrowUpRight, FiGithub, FiCheckCircle } from "react-icons/fi";
+import { FiArrowUpRight, FiGithub, FiCheckCircle, FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Cursor from "../../components/Cursor";
 import Navbar from "../../components/Navbar";
 import SocialIcons from "../../components/SocialIcons";
@@ -18,6 +18,24 @@ interface ClientProjectDetailProps {
 
 export default function ClientProjectDetail({ project }: ClientProjectDetailProps) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (selectedIndex === null || !project.gallery) return;
+
+            if (e.key === "Escape") {
+                setSelectedIndex(null);
+            } else if (e.key === "ArrowLeft") {
+                setSelectedIndex((prev) => (prev === null ? null : (prev === 0 ? project.gallery!.length - 1 : prev - 1)));
+            } else if (e.key === "ArrowRight") {
+                setSelectedIndex((prev) => (prev === null ? null : (prev === project.gallery!.length - 1 ? 0 : prev + 1)));
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [selectedIndex, project.gallery]);
 
     useGSAP(() => {
         // Unlock scroll (in case it was hidden)
@@ -120,10 +138,11 @@ export default function ClientProjectDetail({ project }: ClientProjectDetailProp
                         <Image
                             src={project.image}
                             alt={project.alt}
-                            fill
-                            style={{ objectFit: "cover" }}
+                            width={1200}
+                            height={800}
+                            style={{ width: "100%", height: "auto", objectFit: "contain" }}
                             priority
-                            sizes="100vw"
+                            sizes="(max-width: 1200px) 100vw, 1200px"
                         />
                     </div>
                 </div>
@@ -184,12 +203,13 @@ export default function ClientProjectDetail({ project }: ClientProjectDetailProp
                             <h2>Galería</h2>
                             <div className="gallery-grid">
                                 {project.gallery.map((imgSrc, idx) => (
-                                    <div key={idx} className="gallery-image-wrapper">
+                                    <div key={idx} className="gallery-image-wrapper" onClick={() => setSelectedIndex(idx)} style={{ cursor: "pointer" }}>
                                         <Image
                                             src={imgSrc}
                                             alt={`${project.name} preview ${idx + 1}`}
-                                            fill
-                                            style={{ objectFit: "cover" }}
+                                            width={800}
+                                            height={500}
+                                            style={{ width: "100%", height: "auto", objectFit: "contain" }}
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                         />
                                     </div>
@@ -207,6 +227,52 @@ export default function ClientProjectDetail({ project }: ClientProjectDetailProp
                     </Link>
                 </section>
             </main>
+
+            {/* LIGHTBOX OVERLAY */}
+            {selectedIndex !== null && project.gallery && (
+                <div className="lightbox-overlay" onClick={() => setSelectedIndex(null)}>
+                    <button className="lightbox-close" onClick={() => setSelectedIndex(null)} aria-label="Cerrar vista ampliada">
+                        <FiX />
+                    </button>
+
+                    {project.gallery.length > 1 && (
+                        <button
+                            className="lightbox-nav lightbox-prev"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedIndex((prev) => (prev === null ? null : (prev === 0 ? project.gallery!.length - 1 : prev - 1)));
+                            }}
+                            aria-label="Imagen anterior"
+                        >
+                            <FiChevronLeft />
+                        </button>
+                    )}
+
+                    <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+                        <Image
+                            src={project.gallery[selectedIndex]}
+                            alt={`Vista ampliada ${selectedIndex + 1}`}
+                            fill
+                            style={{ objectFit: "contain" }}
+                            sizes="100vw"
+                            className="lightbox-image"
+                        />
+                    </div>
+
+                    {project.gallery.length > 1 && (
+                        <button
+                            className="lightbox-nav lightbox-next"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedIndex((prev) => (prev === null ? null : (prev === project.gallery!.length - 1 ? 0 : prev + 1)));
+                            }}
+                            aria-label="Siguiente imagen"
+                        >
+                            <FiChevronRight />
+                        </button>
+                    )}
+                </div>
+            )}
         </>
     );
 }

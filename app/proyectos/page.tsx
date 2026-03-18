@@ -80,8 +80,9 @@ export default function ProyectosPage() {
                                     <Image
                                         src={project.image}
                                         alt={project.alt}
-                                        fill
-                                        style={{ objectFit: "cover" }}
+                                        width={800}
+                                        height={500}
+                                        style={{ width: "100%", height: "auto", objectFit: "contain" }}
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 420px"
                                     />
                                     <div className="project-card-overlay">

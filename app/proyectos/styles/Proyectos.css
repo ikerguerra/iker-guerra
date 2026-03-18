@@ -82,9 +82,7 @@
 .project-card-image {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 10;
     overflow: hidden;
-    background-color: #111;
 }
 
 .project-card-image img {
