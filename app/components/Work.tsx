@@ -77,7 +77,6 @@ const Work = () => {
                     <p>{project.category}</p>
                   </div>
                 </div>
-                <p className="work-description">{project.description}</p>
                 <h4>Herramientas</h4>
                 <p>{project.tools}</p>
               </div>

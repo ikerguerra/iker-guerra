@@ -1,5 +1,6 @@
 import { CustomSplitText as SplitText } from "./textUtils";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function getLandingTexts() {
   let TextProps = { type: "chars,lines", linesClass: "split-h2" };
@@ -14,6 +15,9 @@ export function getLandingTexts() {
 
 export function initialFX() {
   document.body.style.overflowY = "auto";
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 100);
   const mainEls = document.getElementsByTagName("main");
   if (mainEls.length > 0) mainEls[0].classList.add("main-active");
   gsap.to("body", {
@@ -49,6 +53,9 @@ export function initialFX() {
 
 export function bypassFX() {
   document.body.style.overflowY = "auto";
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 100);
   const mainEls = document.getElementsByTagName("main");
   if (mainEls.length > 0) mainEls[0].classList.add("main-active");
   gsap.set("body", { backgroundColor: "var(--backgroundColor)" });

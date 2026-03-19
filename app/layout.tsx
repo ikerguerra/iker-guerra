@@ -36,7 +36,7 @@ const styro = localFont({
   variable: "--font-styro",
 });
 
-const BASE_URL = "https://ikerguerra.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://ikerguerra.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
