@@ -120,8 +120,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${geistSans.variable} ${geistMono.variable} ${stormGust.variable} ${styro.variable}`}>
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} ${stormGust.variable} ${styro.variable}`}
+    >
       <body className="antialiased">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem("hasLoadedInitial")){document.documentElement.dataset.loaded="true"}}catch(e){}`,
+          }}
+        />
         <NextTopLoader color="#fff" showSpinner={false} />
         <SmoothScrolling />
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (

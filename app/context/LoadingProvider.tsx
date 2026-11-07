@@ -4,8 +4,9 @@ import {
   createContext,
   PropsWithChildren,
   useContext,
-  useEffect,
+  useMemo,
   useState,
+  useSyncExternalStore,
 } from "react";
 import Loading from "../components/Loading";
 
@@ -17,35 +18,37 @@ interface LoadingType {
 
 export const LoadingContext = createContext<LoadingType | null>(null);
 
+const emptySubscribe = () => () => {};
+const getClientShouldLoad = () => !sessionStorage.getItem("hasLoadedInitial");
+const getServerShouldLoad = () => true;
+
 export const LoadingProvider = ({ children }: PropsWithChildren) => {
+  const shouldShowLoader = useSyncExternalStore(
+    emptySubscribe,
+    getClientShouldLoad,
+    getServerShouldLoad
+  );
   const [isLoading, setIsLoading] = useState(true);
   const [loading, setLoading] = useState(0);
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-    if (sessionStorage.getItem("hasLoadedInitial")) {
-      setIsLoading(false);
-    }
-  }, []);
+  const activeLoading = shouldShowLoader && isLoading;
 
-  const value = {
-    isLoading,
-    setIsLoading,
-    setLoading,
-  };
-
-  if (!mounted) {
-    return (
-      <LoadingContext.Provider value={value as LoadingType}>
-        <main className="main-body">{children}</main>
-      </LoadingContext.Provider>
-    );
-  }
+  const value = useMemo<LoadingType>(
+    () => ({
+      isLoading: activeLoading,
+      setIsLoading,
+      setLoading,
+    }),
+    [activeLoading]
+  );
 
   return (
-    <LoadingContext.Provider value={value as LoadingType}>
-      {isLoading && <Loading percent={loading} />}
+    <LoadingContext.Provider value={value}>
+      {activeLoading && (
+        <div className="initial-loader-root">
+          <Loading percent={loading} />
+        </div>
+      )}
       <main className="main-body">{children}</main>
     </LoadingContext.Provider>
   );

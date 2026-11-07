@@ -12,20 +12,24 @@ const Scene = () => {
   const { setLoading } = useLoading();
 
   useEffect(() => {
-    // Forzar centrado inicial con GSAP para evitar el desfase con el CSS
+    // Forzar centrado inicial explícito con GSAP para evitar desfase con el CSS
     gsap.set(".character-model", {
       xPercent: -50,
       x: 0,
-      visibility: "visible"
+      y: 0,
+      yPercent: 0,
+      scale: 1,
+      opacity: 1,
+      visibility: "visible",
     });
 
-    // Simular carga ya que no hay modelo 3D
+    setCharTimeline();
+    setAllTimeline();
+
+    // Simular progreso de carga inicial ya que se emplea imagen optimizada
     setLoading(0);
     const timer = setTimeout(() => {
       setLoading(100);
-      // Inicializar animaciones de GSAP para el DOM rápidamente
-      setCharTimeline();
-      setAllTimeline();
     }, 500);
 
     return () => clearTimeout(timer);

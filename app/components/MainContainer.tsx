@@ -18,21 +18,28 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(false);
 
   useEffect(() => {
-    const resizeHandler = () => {
+    let resizeTimer: ReturnType<typeof setTimeout>;
+
+    const initLayoutAndTimelines = () => {
+      setIsDesktopView(window.innerWidth > 1024);
       setSplitText();
-      // Reinicializar timelines de GSAP con limpieza
       import("./utils/GsapScroll").then((module) => {
         module.setCharTimeline();
         module.setAllTimeline();
       });
-      setIsDesktopView(window.innerWidth > 1024);
     };
-    resizeHandler();
-    window.addEventListener("resize", resizeHandler);
+
+    const resizeHandler = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(initLayoutAndTimelines, 150);
+    };
+
+    initLayoutAndTimelines();
+    window.addEventListener("resize", resizeHandler, { passive: true });
 
     return () => {
+      clearTimeout(resizeTimer);
       window.removeEventListener("resize", resizeHandler);
-      // Removed global ScrollTrigger kill here because it is async and kills triggers from remounted components in Next.js navigation/StrictMode.
     };
   }, []);
 
@@ -43,7 +50,6 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       });
     }
   }, []);
-
 
   const [load3D, setLoad3D] = useState(false);
 
@@ -56,9 +62,9 @@ const MainContainer = ({ children }: PropsWithChildren) => {
     };
 
     // Load 3D either on scroll or mouse move, so it never blocks the initial render
-    window.addEventListener("scroll", handleScrollOrInteraction, { once: true });
-    window.addEventListener("mousemove", handleScrollOrInteraction, { once: true });
-    window.addEventListener("touchstart", handleScrollOrInteraction, { once: true });
+    window.addEventListener("scroll", handleScrollOrInteraction, { once: true, passive: true });
+    window.addEventListener("mousemove", handleScrollOrInteraction, { once: true, passive: true });
+    window.addEventListener("touchstart", handleScrollOrInteraction, { once: true, passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScrollOrInteraction);
@@ -72,12 +78,11 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       <Cursor />
       <Navbar />
       <SocialIcons />
-      {isDesktopView && children}
       <div className="container-main">
-        <Landing>{!isDesktopView && children}</Landing>
+        <Landing>{children}</Landing>
+        <About />
+        <WhatIDo />
         <Suspense fallback={<div style={{ minHeight: "100vh" }}></div>}>
-          <About />
-          <WhatIDo />
           <Career />
           <Work />
           {isDesktopView && load3D && (

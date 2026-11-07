@@ -1,10 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/postcss";
 
-html {
-  scroll-behavior: smooth;
-}
-
 :root {
   font-family: var(--font-geist-sans), sans-serif;
 
@@ -67,6 +63,14 @@ main {
   transition: 0.3s;
 }
 
+html[data-loaded="true"] .initial-loader-root {
+  display: none !important;
+}
+
+html:not([data-loaded="true"]) .main-body {
+  opacity: 0;
+}
+
 .main-active {
   opacity: 0;
   animation: fadeIn 1s 1;
@@ -82,7 +86,7 @@ main {
 body {
   margin: 0;
   height: auto;
-  background-color: #000;
+  background-color: var(--backgroundColor);
   flex-grow: 1;
   --cWidth: calc(100% - 30px);
   --cMaxWidth: 1920px;

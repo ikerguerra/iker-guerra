@@ -47,6 +47,12 @@ const CAREER_DATA: CareerExperience[] = [
     company: "Eterna Diagnostics (Startup)",
     description: "Desarrollo y evolución de webapp corporativa multi-tenant con NextJS y React. Gestión de bases de datos MySQL, automatización de despliegues (CI/CD) y coordinación de equipo remoto para optimizar procesos y reducir deuda técnica.",
   },
+  {
+    year: "2026",
+    role: "Desarrollador Full Stack",
+    company: "Grupo Ocho Caños",
+    description: "Implementación de webapp basada en arquitectura de microservicios con NestJS y NextJS. Integración de mensajería asíncrona con RabbitMQ, comunicación en tiempo real vía WebSockets, persistencia con Prisma (MySQL) y contenerización con Docker.",
+  },
 ];
 
 const CareerItem = memo(({ experience, index }: { experience: CareerExperience; index: number }) => (

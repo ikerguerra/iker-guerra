@@ -1,9 +1,10 @@
 import { CustomSplitText as SplitText } from "./textUtils";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { setCharTimeline } from "./GsapScroll";
 
 export function getLandingTexts() {
-  let TextProps = { type: "chars,lines", linesClass: "split-h2" };
+  const TextProps = { type: "chars,lines", linesClass: "split-h2" };
   return {
     landingText: new SplitText([".landing-info h3", ".landing-intro h2", ".landing-intro h1"], { type: "chars,lines", linesClass: "split-line" }),
     landingText2: new SplitText(".landing-h2-info", TextProps),
@@ -14,10 +15,14 @@ export function getLandingTexts() {
 }
 
 export function initialFX() {
+  document.documentElement.dataset.loaded = "true";
   document.body.style.overflowY = "auto";
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 100);
+  requestAnimationFrame(() => {
+    setCharTimeline();
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  });
   const mainEls = document.getElementsByTagName("main");
   if (mainEls.length > 0) mainEls[0].classList.add("main-active");
   gsap.to("body", {
@@ -52,12 +57,14 @@ export function initialFX() {
 }
 
 export function bypassFX() {
+  document.documentElement.dataset.loaded = "true";
   document.body.style.overflowY = "auto";
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 100);
-  const mainEls = document.getElementsByTagName("main");
-  if (mainEls.length > 0) mainEls[0].classList.add("main-active");
+  requestAnimationFrame(() => {
+    setCharTimeline();
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  });
   gsap.set("body", { backgroundColor: "var(--backgroundColor)" });
 
   // Si existen los elementos de la landing page, saltar sus animaciones y setear loops
@@ -77,7 +84,7 @@ export function bypassFX() {
 }
 
 function LoopText(Text1: SplitText, Text2: SplitText) {
-  var tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+  const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
   const delay = 4;
   const delay2 = delay * 2 + 1;
 
