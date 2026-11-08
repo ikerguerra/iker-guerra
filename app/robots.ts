@@ -1,12 +1,13 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ikerguerra.vercel.app';
     return {
         rules: {
             userAgent: '*',
             allow: '/',
             disallow: '/private/',
         },
-        sitemap: `${process.env.NEXT_PUBLIC_BASE_URL}/sitemap.xml`,
+        sitemap: `${baseUrl}/sitemap.xml`,
     }
 }

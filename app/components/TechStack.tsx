@@ -121,6 +121,7 @@ const TechStack = () => {
       "/images/javascript.webp",
       "/images/angular.png",
       "/images/java.png",
+      "/images/tailwind.png",
     ];
 
     const textures = imageUrls.map((url) => loader.load(url));
