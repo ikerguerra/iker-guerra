@@ -39,11 +39,6 @@ export const projectsData: Project[] = [
         challenges: "El principal reto fue optimizar el proceso de chunking y la precisión de los embeddings para documentos muy extensos y técnicos, asegurando que la IA contextualice las respuestas correctamente sin alucinaciones.",
         gallery: [
             "/images/blueprint-ai.webp",
-            "/images/blueprint-ai.webp",
-            "/images/blueprint-ai.webp",
-            "/images/blueprint-ai.webp",
-            "/images/blueprint-ai.webp",
-            "/images/blueprint-ai.webp",
         ]
     },
     {
@@ -64,7 +59,12 @@ export const projectsData: Project[] = [
             "Gráficos visuales para el seguimiento de macronutrientes",
             "Diseño responsivo y accesible con Shadcn UI"
         ],
-        challenges: "Implementar de manera eficiente la funcionalidad de escaneo en navegadores web en dispositivos móviles y gestionar la base de datos de Open Food Facts para mapear correctamente los nutrientes."
+        challenges: "Implementar de manera eficiente la funcionalidad de escaneo en navegadores web en dispositivos móviles y gestionar la base de datos de Open Food Facts para mapear correctamente los nutrientes.",
+        gallery: [
+            "/images/login-nutrition-tracker.png",
+            "/images/nutrition-tracker-pwa.webp",
+            "/images/micronutrientes-nutrition-tracker.png"
+        ]
     },
     {
         id: 3,
